@@ -13,7 +13,7 @@ namespace BibliotecaESFE.EN
     {
 
         [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
         public int Usuarioid { get; set; }
         public int LIbroid { get; set; }
         public string Comentario {  get; set; } = string.Empty;
