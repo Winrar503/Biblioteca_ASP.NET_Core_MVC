@@ -13,7 +13,7 @@ namespace BibliotecaESFE.EN
         [Key]
         public int id { get; set; }
         [ForeignKey("Usuarios")]
-        [Required(ErrorMessage = "El usuario es requrido")]
+        [Required(ErrorMessage = "El usuario es requerido")]
         [Display(Name = "Usuario")]
         public int Usuario_id { get; set; }
         public DateTime Fecha_inicio { get; set; }
