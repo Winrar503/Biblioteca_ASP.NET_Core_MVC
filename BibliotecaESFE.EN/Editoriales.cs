@@ -11,7 +11,7 @@ namespace BibliotecaESFE.EN
     public class Editoriales
     {
         [Key]
-        public string Id { get; set; }
+        public int Id { get; set; }
         [Required(ErrorMessage = "Favor llenar")]
         [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
         public string Nombre { get; set; } = string.Empty;
