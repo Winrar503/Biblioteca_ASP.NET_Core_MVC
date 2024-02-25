@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliotecaESFE.DAL", "BibliotecaESFE.DAL\BibliotecaESFE.DAL.csproj", "{8625EC8E-F5BD-43C1-B7DB-E6C360AACC75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibliotecaESFE.DAL", "BibliotecaESFE.DAL\BibliotecaESFE.DAL.csproj", "{8625EC8E-F5BD-43C1-B7DB-E6C360AACC75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliotecaESFE.BL", "BibliotecaESFE.BL\BibliotecaESFE.BL.csproj", "{165807D5-77CE-48AD-A7D2-41F7EDF8D035}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibliotecaESFE.BL", "BibliotecaESFE.BL\BibliotecaESFE.BL.csproj", "{165807D5-77CE-48AD-A7D2-41F7EDF8D035}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliotecaESFE.EN", "BibliotecaESFE.EN\BibliotecaESFE.EN.csproj", "{A2DD7129-07DE-4D0F-B8AB-83686C1BC391}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibliotecaESFE.EN", "BibliotecaESFE.EN\BibliotecaESFE.EN.csproj", "{A2DD7129-07DE-4D0F-B8AB-83686C1BC391}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliotecaESFE.UI", "BibliotecaESFE.UI\BibliotecaESFE.UI.csproj", "{ACCC2025-4A68-4EB6-ADAE-03EE28A99EDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibliotecaESFE.UI", "BibliotecaESFE.UI\BibliotecaESFE.UI.csproj", "{ACCC2025-4A68-4EB6-ADAE-03EE28A99EDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

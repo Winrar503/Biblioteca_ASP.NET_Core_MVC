@@ -36,12 +36,21 @@ namespace BibliotecaESFE.DAL
         }
         public static async Task<Reservas> GetByIdAsync(Reservas reservas)
         {
-            var reservasDB = new Autores();
+            var reservasDB = new Reservas();
             using (var bdContexto = new ContextoBD())
             {
                 reservasDB = await bdContexto.Reservas.FirstOrDefaultAsync(a => a.Id == reservas.Id);
             }
             return reservasDB;
+        }
+        public static async Task<List<Reservas>> GetAllAsync()
+        {
+            var reservas = new List<Reservas>();
+            using (var bdContexto = new ContextoBD())
+            {
+                reservas = await bdContexto.Reservas.ToListAsync();
+            }
+            return reservas;
         }
     }
 }

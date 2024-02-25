@@ -1,0 +1,116 @@
+body{
+    font-family: sans-serif;
+    margin: 0;
+}
+a{
+    text-decoration: none;
+    color: black;
+
+}
+header{
+    display: flex;
+    min-height: 70px;
+    background-color: rgb(224, 230, 48);
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+.logo{
+    display: flex;
+    align-items: center;
+}
+.logo img{
+    height: 50px;
+    margin-right: 10px;
+}
+nav a{
+    font-weight: 600;
+    padding-right: 10px;
+}
+nav a:hover{
+    color: white;
+}
+@media (max-width:700px){
+    header{
+        flex-direction: column;
+    }
+    nav{
+        padding: 10px 0px;
+    }
+}
+
+.campos {
+    width: 45%; /* Cubre hasta la mitad de la pantalla */
+    margin: 20px auto; /* Margen superior e inferior de 20px, centrado horizontalmente */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    float: right; /* Alinea a la izquierda */
+    margin-right: 5%; /* Margen derecho para separarlo del otro contenido */
+}
+
+
+/* Estilos para las etiquetas */
+.campos label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Estilos para los campos de entrada */
+.campos input[type="text"],
+.campos input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box; /* Para incluir el padding en el ancho total */
+}
+
+/* Estilos para el botón de enviar */
+.campos input[type="submit"] {
+    background-color: #4CAF50; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Borde redondeado */
+    cursor: pointer; /* Cursor al pasar sobre el botón */
+}
+
+/* Estilos para el botón de enviar al pasar el cursor sobre él */
+.campos input[type="submit"]:hover {
+    background-color: #45a049; /* Cambio de color al pasar el cursor */
+}
+
+@media screen and (max-width: 600px) {
+    .campos {
+        width: 90%; /* Para pantallas más pequeñas, ocupa el 90% del ancho */
+        float: none; /* Vuelve al flujo normal del documento */
+        margin-right: 0; /* Elimina el margen derecho para que no haya espacio extra */
+        margin-left: auto; /* Centra horizontalmente en pantallas pequeñas */
+    }
+}
+.contenedor {
+    position: relative; /* Para que la posición absoluta funcione correctamente */
+    width: 45%; /* Tamaño deseado del contenedor */
+    float: right; /* Posición a la derecha */
+    margin-left: 5%; /* Separación del campo */
+}
+
+#archivo {
+    display: block; /* Para que el input de tipo file ocupe todo el ancho */
+    margin-bottom: 10px; /* Espacio entre el input y la imagen */
+}
+
+.imagen-preview {
+    display: block; /* Para asegurar que la imagen tenga su propio espacio */
+    width: 100%; /* Ajustar al ancho del contenedor */
+    height: auto; /* Altura automática para mantener la proporción */
+    border: 1px solid #ccc; /* Borde opcional */
+    border-radius: 5px; /* Borde redondeado */
+    transition: transform 0.3s ease; /* Animación de transición */
+}
+
+.imagen-preview:hover {
+    transform: scale(1.05); /* Aumentar tamaño al pasar el ratón */
+}

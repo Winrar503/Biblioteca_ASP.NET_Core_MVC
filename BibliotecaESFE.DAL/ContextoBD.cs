@@ -10,8 +10,6 @@ namespace BibliotecaESFE.DAL
 {
     public class ContextoBD : DbContext
     {
-        
-
         public DbSet<Usuarios> Name { get; set; }
         public DbSet<Registro> Registro_Sesiones_Usuario { get; set; }
         public DbSet<Autores> Autores { get; set; }
@@ -25,7 +23,7 @@ namespace BibliotecaESFE.DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data source = LAPTOP-7SKAH6B6\SQLEXPRESS;
+            optionsBuilder.UseSqlServer(@"Data source = WINRAR\SQLEXPRESS;
                                            Initial Catalog = BibliotecaES;
                                            Integrated Security = true;
                                            Encrypt = false;

@@ -18,7 +18,7 @@ namespace BibliotecaESFE.EN
         public string Nombre { get; set; } = string.Empty;
         [Required(ErrorMessage = "La nacionalida es requrida")]
         [Display(Name = "Nacionalida")]
-        public string Nacionalida { get; set; } = string.Empty;
+        public string Nacionalidad { get; set; } = string.Empty;
         public DateTime FechaNacimiento { get; set; }
         public string Sexo { get; set; } = string.Empty;
 

@@ -87,13 +87,13 @@ namespace BibliotecaESFE.DAL
             }
             return query;
         }
-        public static async Task<List<Libros>> SearchAsync(Libros category)
+        public static async Task<List<Libros>> SearchAsync(Libros libros)
         {
             var libroes = new List<Libros>();
             using (var bdContexto = new ContextoBD())
             {
                 var select = bdContexto.Libros.AsQueryable();
-                select = QuerySelect(select, category);
+                select = QuerySelect(select, libros);
                 libroes = await select.ToListAsync();
             }
             return libroes;
