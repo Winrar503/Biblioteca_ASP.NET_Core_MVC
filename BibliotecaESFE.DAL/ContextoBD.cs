@@ -10,7 +10,7 @@ namespace BibliotecaESFE.DAL
 {
     public class ContextoBD : DbContext
     {
-        public DbSet<Usuarios> Name { get; set; }
+        public DbSet<Usuarios> Usuarios { get; set; }
         public DbSet<Registro> Registro_Sesiones_Usuario { get; set; }
         public DbSet<Autores> Autores { get; set; }
         public DbSet<Editoriales> Editoriales { get; set; }
@@ -18,13 +18,16 @@ namespace BibliotecaESFE.DAL
         public DbSet<Libros> Libros { get; set; }
         public DbSet<Calificaciones> Calificaciones_Reseñas { get; set; }
         public DbSet<Prestamos> Prestamos { get; set; }
-        public DbSet<Comentarios> Comentarios {  get; set; }
+        public DbSet<Comentarios> Comentarios { get; set; }
         public DbSet<Reservas> Reservas { get; set; }
+        public DbSet<Role> Role { get; set; }
+
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Data source = WINRAR\SQLEXPRESS;
-                                           Initial Catalog = BibliotecaES;
+                                           Initial Catalog = BibliotecaESFE;
                                            Integrated Security = true;
                                            Encrypt = false;
                                            TrustServerCertificate = true;");

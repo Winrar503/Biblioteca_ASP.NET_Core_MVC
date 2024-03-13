@@ -30,7 +30,7 @@ namespace BibliotecaESFE.DAL
                 var librosDB = await bdContexto.Libros.FirstOrDefaultAsync(l => l.Id == libros.Id);
                 if (librosDB != null)
                 {
-                    librosDB.Titulo = libros.Titulo;
+                    librosDB.titulo = libros.titulo;
                     bdContexto.Update(librosDB);
                     result = await bdContexto.SaveChangesAsync();
                 }
@@ -76,9 +76,9 @@ namespace BibliotecaESFE.DAL
             {
                 query = query.Where(l => l.Id == libros.Id);
             }
-            if (!string.IsNullOrEmpty(libros.Titulo))
+            if (!string.IsNullOrEmpty(libros.titulo))
             {
-                query = query.Where(l => l.Titulo.Contains(libros.Titulo));
+                query = query.Where(l => l.titulo.Contains(libros.titulo));
             }
             query = query.OrderByDescending(l => l.Id);
             if (libros.Top_Aux > 0)
@@ -97,6 +97,17 @@ namespace BibliotecaESFE.DAL
                 libroes = await select.ToListAsync();
             }
             return libroes;
+        }
+        public static async Task<List<Libros>> SearchIncludeCludeCategoryAsync(Libros libros)
+        {
+            var libro = new List<Libros>();
+            using (var bdContxto = new ContextoBD())
+            {
+                var selec = bdContxto.Libros.AsQueryable();
+                selec = QuerySelect(selec, libros).Include(l => l.Autores).Include(l => l.Categorias).Include(l => l.Editoriales).AsQueryable();
+                libro = await selec.ToListAsync();
+            }
+            return libro;
         }
     }
 }

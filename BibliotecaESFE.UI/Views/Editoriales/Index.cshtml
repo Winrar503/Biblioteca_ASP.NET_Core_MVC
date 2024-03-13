@@ -1,0 +1,91 @@
+﻿@model IEnumerable<BibliotecaESFE.EN.Editoriales>
+
+@{
+    ViewData["Title"] = "Index";
+    int numPage = 1;
+    int numRegistros = 0;
+    int numRegistrosPorPage = 10;
+    int[] tops = { 10, 20, 50, 100, 500, 1000, 10000, -1 };
+    int topActual = Convert.ToInt32(ViewBag.Top);
+}
+
+<h1>Index</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Index">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Nombre</label>
+                        <input type="text" class="form-control" name="Nombre" />
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label">Top</label>
+                        <select name="Top_Aux" class="form-control">
+                            @foreach (var item in tops)
+                            {
+                                string strItem = item != -1 ? item.ToString() : "Todos";
+                                if (item != topActual)
+                                {
+                                    <option value="@item">@strItem</option>
+                                }
+                                else
+                                {
+                                    <option selected value="@item">@strItem</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 m-2">
+                <input type="submit" value="Buscar" class="btn btn-outline-info" /> &nbsp;&nbsp;
+                <a asp-action="Create" class="btn btn-outline-primary">Nuevo editorial</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Top_Aux)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Top_Aux)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a> |
+                   @*  <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary">Detalles</a> | *@
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

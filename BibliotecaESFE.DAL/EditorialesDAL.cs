@@ -22,21 +22,7 @@ namespace BibliotecaESFE.DAL
         }
 
 
-        public static async Task<int> UpdateAsync(Editoriales editoriales)
-        {
-            int result = 0;
-            using (var bdContexto = new ContextoBD())
-            {
-                var editorialesDB = await bdContexto.Editoriales.FirstOrDefaultAsync(e => e.Id == editoriales.Id);
-                if (editorialesDB != null)
-                {
-                    editorialesDB.Nombre = editoriales.Nombre;
-                    bdContexto.Update(editorialesDB);
-                    result = await bdContexto.SaveChangesAsync();
-                }
-                return result;
-            }
-        }
+
         public static async Task<int> DeleteAsync(Editoriales editoriales)
         {
             int result = 0;
@@ -87,6 +73,21 @@ namespace BibliotecaESFE.DAL
                 query = query.Take(editoriales.Top_Aux).AsQueryable();
             }
             return query;
+        }
+        public static async Task<int> UpdateAsync(Editoriales editoriales)
+        {
+            int result = 0;
+            using (var bdContexto = new ContextoBD())
+            {
+                var editorialesDB = await bdContexto.Editoriales.FirstOrDefaultAsync(c => c.Id == editoriales.Id);
+                if (editorialesDB != null)
+                {
+                    editorialesDB.Nombre = editoriales.Nombre;
+                    bdContexto.Update(editorialesDB);
+                    result = await bdContexto.SaveChangesAsync();
+                }
+                return result;
+            }
         }
         public static async Task<List<Editoriales>> SearchAsync(Editoriales editoriales)
         {

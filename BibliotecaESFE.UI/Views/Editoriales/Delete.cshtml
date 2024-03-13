@@ -1,0 +1,29 @@
+﻿@model BibliotecaESFE.EN.Editoriales
+
+
+@{
+    ViewData["Title"] = "Eliminar";
+}
+
+
+<h3>Estas seguro de querer eliminar esto?</h3>
+<div>
+    <h4>Editoriales</h4>
+    <hr />
+    <dl class="row">
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+       
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-asp-for="Id" />
+        <input type="submit" value="Elminar" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

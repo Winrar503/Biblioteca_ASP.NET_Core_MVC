@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BibliotecaESFE.EN.Autores>
+﻿@model IEnumerable<BibliotecaESFE.EN.Role>
 
 @{
     ViewData["Title"] = "Index";
@@ -9,7 +9,7 @@
     int topActual = Convert.ToInt32(ViewBag.Top);
 }
 
-<h1>Index</h1>
+<h1>Listado de Roles</h1>
 
 <div class="row">
     <div class="col-md-12">
@@ -21,24 +21,7 @@
                         <input type="text" class="form-control" name="Name" />
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="control-label">Nacionalidad</label>
-                        <input type="text" class="form-control" name="Nacionalidad" />
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="control-label">Fecha de Nacimiento</label>
-                        <input type="date" class="form-control" name="FechaNacimiento" />
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="control-label">Sexo</label>
-                        <input type="text" class="form-control" name="Sexo" />
-                    </div>
-                </div>
+
                 <div class="col-md-2">
                     <div class="form-group">
                         <label class="control-label">Top</label>
@@ -58,10 +41,11 @@
                         </select>
                     </div>
                 </div>
+
             </div>
             <div class="col-md-4 m-2">
                 <input type="submit" value="Buscar" class="btn btn-outline-info" /> &nbsp;&nbsp;
-                <a asp-action="Create" class="btn btn-outline-primary">Nuevo autor</a>
+                <a asp-action="Create" class="btn btn-outline-primary">Nuevo rol</a>
             </div>
         </form>
     </div>
@@ -71,16 +55,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nacionalidad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaNacimiento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Sexo)
+                @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>Acciones</th>
         </tr>
@@ -90,16 +65,7 @@
         {
             <tr data-page="@numPage">
                 <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nacionalidad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaNacimiento)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Sexo)
+                    @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
                     @Html.ActionLink("Modificar", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-info" }) |

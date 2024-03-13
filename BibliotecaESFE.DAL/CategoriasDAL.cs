@@ -59,9 +59,9 @@ namespace BibliotecaESFE.DAL
             {
                 query = query.Where(c => c.Id == categorias.Id);
             }
-            if (!string.IsNullOrEmpty(categorias.Name))
+            if (!string.IsNullOrEmpty(categorias.nombre))
             {
-                query = query.Where(c => c.Name.Contains(categorias.Name));
+                query = query.Where(c => c.nombre.Contains(categorias.nombre));
             }
             query = query.OrderByDescending(c => c.Id);
             if (categorias.Top_Aux > 0)

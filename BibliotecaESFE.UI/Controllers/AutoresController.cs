@@ -2,14 +2,17 @@
 using BibliotecaESFE.BL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BibliotecaESFE.UI.Controllers
 {
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class AutoresController : Controller
     {
         AutoresBL autoresBL = new AutoresBL();
         // GET: AutoresController
-        public async Task<ActionResult> Index(Autores autores = null)
+        public async Task<IActionResult> Index(Autores autores = null)
         {
             if (autores == null)
                 autores = new Autores();
@@ -49,13 +52,13 @@ namespace BibliotecaESFE.UI.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex.Message;
-                return View();
+                ViewBag.error = ex.Message;
+                return View(autores);
             }
         }
 
         // GET: AutoresController/Edit/5
-        public async Task<IActionResult> Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
             var autores = await autoresBL.GetByIdAsync(new Autores { Id = id });
             return View(autores);
