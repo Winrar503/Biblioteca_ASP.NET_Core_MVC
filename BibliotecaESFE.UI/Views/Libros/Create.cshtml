@@ -1,0 +1,91 @@
+﻿@using BibliotecaESFE.EN
+@model BibliotecaESFE.EN.Libros
+
+@{
+    ViewData["Title"] = "Crear";
+    List<Autores> autores = ViewBag.Autores as List<Autores>;
+    List<Editoriales> editoriales = ViewBag.Editoriales as List<Editoriales>;
+    List<Categorias> categorias = ViewBag.Categorias as List<Categorias>;
+}
+
+<h1>Crear Libro</h1>
+
+<hr />
+
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <div class="form-group">
+                    <label asp-for="Titulo" class="control-label"></label>
+                    <input asp-for="Titulo" class="form-control" />
+                    <span asp-validation-for="Titulo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <label asp-for="Disponibilidad" class="control-label"></label>
+                    <input asp-for="Disponibilidad" class="form-control" />
+                    <span asp-validation-for="Disponibilidad" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label">Autores</label>
+                    <select asp-for="AutorId" class="form-control">
+                        <option value="0">SELECCIONAR</option>
+                        @foreach (var item in autores)
+                        {
+                            <option value="@item.Id">@item.Nombre</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Editoriales</label>
+                        <select asp-for="EditorialId" class="form-control">
+                            <option value="0">SELECCIONAR</option>
+                            @foreach (var item in editoriales)
+                            {
+                                <option value="@item.Id">@item.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Categorias</label>
+                        <select asp-for="CategoriaId" class="form-control">
+                            <option value="0">SELECCIONAR</option>
+                            @foreach (var item in categorias)
+                            {
+                                <option value="@item.Id">@item.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                        <a asp-action="Index">Regresar a la lista</a>
+                    </div>
+                    <span class="text-danger">@ViewBag.Error</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

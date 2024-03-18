@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace BibliotecaESFE.DAL
 {
-    public class CalificacionesDAL
+    public class CalificacionesReseniasDAL
     {
-        public static async Task<int> CreateAsync(Calificaciones calificaciones)
+        public static async Task<int> CreateAsync(CalificacionesResenias calificaciones)
         {
             int result = 0;
             using (var bdContexto = new ContextoBD())
@@ -20,7 +20,7 @@ namespace BibliotecaESFE.DAL
             }
             return result;
         }
-        public static async Task<int> UpdateAsync(Calificaciones calificaciones)
+        public static async Task<int> UpdateAsync(CalificacionesResenias calificaciones)
         {
             int result = 0;
             using (var bdContexto = new ContextoBD())
@@ -35,7 +35,7 @@ namespace BibliotecaESFE.DAL
                 return result;
             }
         }
-        public static async Task<int> DeleteAsync(Calificaciones calificaciones)
+        public static async Task<int> DeleteAsync(CalificacionesResenias calificaciones)
         {
             int result = 0;
             using (var bdContexto = new ContextoBD())
@@ -51,25 +51,25 @@ namespace BibliotecaESFE.DAL
             }
 
         }
-        public static async Task<Calificaciones> GetByIdAsync(Calificaciones calificaciones) 
+        public static async Task<CalificacionesResenias> GetByIdAsync(CalificacionesResenias calificaciones) 
         {
-            var calificacionesDB = new Calificaciones();
+            var calificacionesDB = new CalificacionesResenias();
             using (var bdContexto = new ContextoBD())
             {
                 calificacionesDB = await bdContexto.Calificaciones_Reseñas.FirstOrDefaultAsync(c => c.Id == calificaciones.Id);
             }
             return calificacionesDB;
         }
-        public static async Task<List<Calificaciones>> GetAllAsync()
+        public static async Task<List<CalificacionesResenias>> GetAllAsync()
         {
-            var calificacione = new List<Calificaciones>();
+            var calificacione = new List<CalificacionesResenias>();
             using (var bdContexto = new ContextoBD())
             {
                 calificacione = await bdContexto.Calificaciones_Reseñas.ToListAsync();
             }
             return calificacione;
         }
-        internal static IQueryable<Calificaciones> QuerySelect(IQueryable<Calificaciones> query, Calificaciones calificaciones)
+        internal static IQueryable<CalificacionesResenias> QuerySelect(IQueryable<CalificacionesResenias> query, CalificacionesResenias calificaciones)
         {
             if (calificaciones.UsuarioId > 0)
             {
@@ -86,9 +86,9 @@ namespace BibliotecaESFE.DAL
             }
             return query;
         }
-        public static async Task<List<Calificaciones>> SearchAsync(Calificaciones calificaciones)
+        public static async Task<List<CalificacionesResenias>> SearchAsync(CalificacionesResenias calificaciones)
         {
-            var calificacione = new List<Calificaciones>();
+            var calificacione = new List<CalificacionesResenias>();
             using (var bdContexto = new ContextoBD())
             {
                 var select = bdContexto.Calificaciones_Reseñas.AsQueryable();

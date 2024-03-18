@@ -13,21 +13,21 @@ namespace BibliotecaESFE.EN
         [Key]
         public int Id { get; set; }
         [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
-        public string titulo { get; set; } = string.Empty;
+        public string Titulo { get; set; } = string.Empty;
         [ForeignKey("Autores")]
-        public int autorId { get; set; }
+        public int AutorId { get; set; }
         [ForeignKey("Editoriales")]
-        public int editorialId { get; set; }
+        public int EditorialId { get; set; }
         [ForeignKey("Categorias")]
-        public int categoriaId { get; set; }
+        public int CategoriaId { get; set; }
         [Required(ErrorMessage = "Favor llenar")]
         [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
-        public string disponibilidad { get; set; } = string.Empty;
+        public string Disponibilidad { get; set; } = string.Empty;
 
         [NotMapped]
         public int Top_Aux {  get; set; }
-        public Autores Autores { get; set; } = new Autores();
-        public Editoriales Editoriales { get; set; } = new Editoriales();
-        public Categorias Categorias { get; set; } = new Categorias();
+        public Autores? Autores { get; set; }
+        public Editoriales? Editoriales { get; set; }
+        public Categorias? Categorias { get; set; }
     }
 }

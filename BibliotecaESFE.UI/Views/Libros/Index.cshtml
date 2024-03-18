@@ -1,71 +1,204 @@
-﻿@model IEnumerable<BibliotecaESFE.EN.Libros>
+﻿@using BibliotecaESFE.EN
+@model IEnumerable<BibliotecaESFE.EN.Libros>
 
 @{
     ViewData["Title"] = "Index";
+    int numPage = 1;
+    int numRegistros = 0;
+    int numRegistrosPorPage = 10;
+    int[] tops = { 10, 20, 50, 100, 500, 1000, 10000, -1 };
+    int topActual = Convert.ToInt32(ViewBag.Top);
+    List<Autores> autores = ViewBag.Autores as List<Autores>;
+    List<Editoriales> editoriales = ViewBag.Editoriales as List<Editoriales>;
+    List<Categorias> categorias = ViewBag.Categorias as List<Categorias>;
 }
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Index">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Titulo</label>
+                        <input type="text" class="form-control" name="Titulo" />
+                    </div>
+                </div>
+               @*  <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Autor</label>
+                        <input type="text" class="form-control" name="AutorId" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Editorial</label>
+                        <input type="text" class="form-control" name="EditorialId" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">CategoriaId</label>
+                        <input type="text" class="form-control" name="CategoriaId" />
+                    </div>
+                </div> *@
+            
+                
+            </div>
+            <div class="row">
+                
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Autores</label>
+                        <select name="AutoresId" class="form-control">
+                            <option selected value="0">SELECCIONAR</option>
+                            @foreach (var item in autores)
+                            {
+                                <option value="@item.Id">@item.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Editoriales</label>
+                        <select name="EditorialId" class="form-control">
+                            <option selected value="0">SELECCIONAR</option>
+                            @foreach (var item in editoriales)
+                            {
+                                <option value="@item.Id">@item.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Categorias</label>
+                        <select name="CategoriaId" class="form-control">
+                            <option selected value="0">SELECCIONAR</option>
+                            @foreach (var item in categorias)
+                            {
+                                <option value="@item.Id">@item.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Disponibilidad</label>
+                        <input type="text" class="form-control" name="Disponibilidad" />
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label">Top</label>
+                        <select name="top_aux" class="form-control">
+                            @foreach (var item in tops)
+                            {
+                                string strItem = item != -1 ? item.ToString() : "Todos";
+                                if (item != topActual)
+                                {
+                                    <option value="@item">@strItem</option>
+                                }
+                                else
+                                {
+                                    <option selected value="@item">@strItem</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group m-2">
+                <input type="submit" value="Buscar" class="btn btn-outline-info" />
+                <a asp-action="Create" class="btn btn-outline-primary">Nuevo libro</a>
+            </div>
+        </form>
+    </div>
+</div>
+
 <table class="table">
     <thead>
         <tr>
+
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => model.Titulo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.titulo)
+                @Html.DisplayNameFor(model => model.Autores)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.autorId)
+                @Html.DisplayNameFor(model => model.Editoriales)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.editorialId)
+                @Html.DisplayNameFor(model => model.Categorias)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.categoriaId)
+                @Html.DisplayNameFor(model => model.Disponibilidad)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.disponibilidad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Top_Aux)
-            </th>
+          
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @Html.DisplayFor(modelItem => item.Titulo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.titulo)
+                @Html.DisplayFor(modelItem => item.Autores.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.autorId)
+                    @Html.DisplayFor(modelItem => item.Editoriales.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.editorialId)
+                    @Html.DisplayFor(modelItem => item.Categorias.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.categoriaId)
+                @Html.DisplayFor(modelItem => item.Disponibilidad)
             </td>
+        
             <td>
-                @Html.DisplayFor(modelItem => item.disponibilidad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Top_Aux)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Modificar", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-info" })
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-outline-secondary" })
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
             </td>
         </tr>
-}
+            numRegistros++;
+            if (numRegistros == numRegistrosPorPage)
+            {
+                numPage++;
+                numRegistros = 0;
+            }
+        }
+        @{
+            if (numRegistros == 0)
+            {
+                numPage--;
+            }
+        }
+
     </tbody>
 </table>
+@if (numPage > 1)
+{
+    <div class="row" style="overflow:auto">
+        <div class="col-md-12">
+            <ul class="pagination paginationjs" data-numpage="@numPage" data-pageactive="1">
+                <li class="page-item" data-typepage="Previous"><a class="page-link" href="#">Previous</a></li>
+                @for (var i = 1; i <= numPage; i++)
+                {
+                    <li class="page-item" data-page="@i" data-typepage="Item"><a class="page-link" href="#">@i</a></li>
+                }
+                <li class="page-item" data-typepage="Next"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </div>
+    </div>
+}

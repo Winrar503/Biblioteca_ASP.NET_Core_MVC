@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BibliotecaESFE.EN
 {
-    public class Registro
+    public class RegistroSecionesUsuarios
     {
         [Key]
         public int id { get; set; }

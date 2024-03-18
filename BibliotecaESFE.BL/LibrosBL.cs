@@ -36,5 +36,9 @@ namespace BibliotecaESFE.BL
         {
             return await LibrosDAL.SearchAsync(libros);
         }
+        public async Task<List<Libros>> SearchIncludeLibrosAsync(Libros libros)
+        {
+            return await LibrosDAL.SearchIncludeCludeLibrosAsync(libros);
+        }
     }
 }

@@ -37,6 +37,10 @@ namespace BibliotecaESFE.BL
         {
             return await AutoresDAL.SearchAsync(autores);
         }
+        //public async Task<List<Autores>> SearchIncludeCludeAutoresAsync(Autores autores)
+        //{
+        //    return await AutoresDAL.SearchIncludeCludeAutoresAsync(autores);
+        //}
     }
 }
 

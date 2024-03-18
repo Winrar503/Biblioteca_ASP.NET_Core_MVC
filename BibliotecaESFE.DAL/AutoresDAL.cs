@@ -96,5 +96,16 @@ namespace BibliotecaESFE.DAL
             }
             return autoros;
         }
+        //public static async Task<List<Autores>> SearchIncludeCategoryAsync(Autores autores)
+        //{
+        //    var ads = new List<Autores>();
+        //    using (var dbContext = new ContextoBD())
+        //    {
+        //        var select = dbContext.Autores.AsQueryable();
+        //        select = QuerySelect(select, autores);
+        //        ads = await select.ToListAsync();
+        //    }
+        //    return ads;
+        //}
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BibliotecaESFE.EN
 {
-    public class Calificaciones
+    public class CalificacionesResenias
     {
         [Key]
         public int Id { get; set; }

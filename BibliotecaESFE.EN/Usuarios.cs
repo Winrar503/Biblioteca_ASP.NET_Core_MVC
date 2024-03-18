@@ -59,10 +59,10 @@ namespace BibliotecaESFE.EN
         public Role? Role { get; set; } // propiedad de navegación
         
         //lista
-        public List<Registro> Reg { get; set; } = new List<Registro> { };
+        public List<RegistroSecionesUsuarios> Reg { get; set; } = new List<RegistroSecionesUsuarios> { };
         public List<Reservas> Reservas { get; set; } = new List<Reservas> { };
         public List<Comentarios> Comentarios { get; set; } = new List<Comentarios> { };
-        public List<Calificaciones> Calificaciones { get; set; } = new List<Calificaciones> { };    
+        public List<CalificacionesResenias> Calificaciones { get; set; } = new List<CalificacionesResenias> { };    
         public List<Prestamos> Prestamos { get; set; } = new List<Prestamos> { };   
     }
     public enum User_Status

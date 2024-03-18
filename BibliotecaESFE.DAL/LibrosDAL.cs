@@ -30,9 +30,15 @@ namespace BibliotecaESFE.DAL
                 var librosDB = await bdContexto.Libros.FirstOrDefaultAsync(l => l.Id == libros.Id);
                 if (librosDB != null)
                 {
-                    librosDB.titulo = libros.titulo;
+                   
+                    librosDB.Titulo = libros.Titulo;
+                    librosDB.AutorId = libros.AutorId;
+                    librosDB.EditorialId = libros.EditorialId;
+                    librosDB.CategoriaId = libros.CategoriaId;
+                    librosDB.Disponibilidad = libros.Disponibilidad;
                     bdContexto.Update(librosDB);
                     result = await bdContexto.SaveChangesAsync();
+
                 }
                 return result;
             }
@@ -42,10 +48,10 @@ namespace BibliotecaESFE.DAL
             int result = 0;
             using (var bdContexto = new ContextoBD())
             {
-                var librosDB = await bdContexto.Libros.FirstOrDefaultAsync(l => l.Id == libros.Id);
-                if (librosDB != null)
+                var librosDb = await bdContexto.Libros.FirstOrDefaultAsync(l => l.Id == libros.Id);
+                if (librosDb != null)
                 {
-                    bdContexto.Libros.Remove(librosDB);
+                    bdContexto.Libros.Remove(librosDb);
                     result = await bdContexto.SaveChangesAsync();
                 }
                 return result;
@@ -54,12 +60,12 @@ namespace BibliotecaESFE.DAL
         }
         public static async Task<Libros> GetByIdAsync(Libros libros)
         {
-            var librosDB = new Libros();
+            var librosDb = new Libros();
             using (var bdContexto = new ContextoBD())
             {
-                librosDB = await bdContexto.Libros.FirstOrDefaultAsync(l => l.Id == libros.Id);
+                librosDb = await bdContexto.Libros.FirstOrDefaultAsync(l => l.Id == libros.Id);
             }
-            return librosDB;
+            return librosDb!;
         }
         public static async Task<List<Libros>> GetAllAsync()
         {
@@ -76,10 +82,20 @@ namespace BibliotecaESFE.DAL
             {
                 query = query.Where(l => l.Id == libros.Id);
             }
-            if (!string.IsNullOrEmpty(libros.titulo))
+            if (!string.IsNullOrEmpty(libros.Titulo))
             {
-                query = query.Where(l => l.titulo.Contains(libros.titulo));
+                query = query.Where(l => l.Titulo.Contains(libros.Titulo));
             }
+
+            if (libros.AutorId > 0)
+                query = query.Where(a => a.AutorId == libros.AutorId);
+
+            if (libros.EditorialId > 0)
+                query = query.Where(e => e.EditorialId == libros.EditorialId);
+
+            if (libros.CategoriaId > 0)
+                query = query.Where(c => c.CategoriaId == libros.CategoriaId);
+
             query = query.OrderByDescending(l => l.Id);
             if (libros.Top_Aux > 0)
             {
@@ -98,13 +114,13 @@ namespace BibliotecaESFE.DAL
             }
             return libroes;
         }
-        public static async Task<List<Libros>> SearchIncludeCludeCategoryAsync(Libros libros)
+        public static async Task<List<Libros>> SearchIncludeCludeLibrosAsync(Libros libros)
         {
             var libro = new List<Libros>();
             using (var bdContxto = new ContextoBD())
             {
                 var selec = bdContxto.Libros.AsQueryable();
-                selec = QuerySelect(selec, libros).Include(l => l.Autores).Include(l => l.Categorias).Include(l => l.Editoriales).AsQueryable();
+                selec = QuerySelect(selec, libros).Include(l => l.Autores).Include(e => e.Editoriales).Include(c => c.Categorias).AsQueryable();
                 libro = await selec.ToListAsync();
             }
             return libro;
