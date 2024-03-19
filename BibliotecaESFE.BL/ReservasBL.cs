@@ -14,6 +14,10 @@ namespace BibliotecaESFE.BL
         {
             return await ReservasDAL.CreateAsync(reservas);
         }
+        public async Task<int> UpdateAsync(Reservas reservas)
+        {
+            return await ReservasDAL.UpdateAsync(reservas);
+        }
         public async Task<int> DeleteAsync(Reservas reservas)
         {
             return await ReservasDAL.DeleteAsync(reservas);
@@ -26,6 +30,14 @@ namespace BibliotecaESFE.BL
         public async Task<List<Reservas>> GetAllAsync()
         {
             return await ReservasDAL.GetAllAsync();
+        }
+        public async Task<List<Reservas>> SearchAsync(Reservas reservas)
+        {
+            return await ReservasDAL.SearchAsync(reservas);
+        }
+        public async Task<List<Reservas>> SearchIncludeReservasAsync(Reservas reservas)
+        {
+            return await ReservasDAL.SearchIncludeCludeLibrosAsync(reservas);
         }
     }
 }

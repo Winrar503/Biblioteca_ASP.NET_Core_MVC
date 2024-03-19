@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BibliotecaESFE.UI.Controllers
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    ///[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class AutoresController : Controller
     {
         AutoresBL autoresBL = new AutoresBL();

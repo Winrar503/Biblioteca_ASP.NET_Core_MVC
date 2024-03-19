@@ -20,7 +20,7 @@ namespace BibliotecaESFE.EN
 
 
         [NotMapped]
-        public int Tpo_Aux { get; set; }
+        public int Top_Aux { get; set; }
         public Usuarios Usuarios { get; set; } = new Usuarios();
         public Libros Libros { get; set; }  = new Libros();
 

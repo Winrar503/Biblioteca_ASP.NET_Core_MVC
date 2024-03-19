@@ -10,7 +10,7 @@ using System.Security.Claims;
 
 namespace BibliotecaESFE.UI.Controllers
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+   //[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class UsuarioController : Controller
     { // instancias de acceso a las clases BL
         UsuarioBL usuarioBL = new UsuarioBL();

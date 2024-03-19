@@ -11,13 +11,13 @@ namespace BibliotecaESFE.EN
     public class RegistroSecionesUsuarios
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
         [ForeignKey("Usuarios")]
         [Required(ErrorMessage = "El usuario es requerido")]
         [Display(Name = "Usuario")]
-        public int Usuario_id { get; set; }
-        public DateTime Fecha_inicio { get; set; }
-        public DateTime Fecha_fin {  get; set; }
+        public int UsuarioId { get; set; }
+        public DateTime FechaInicio { get; set; }
+        public DateTime FechaFin {  get; set; }
 
         [NotMapped]
         public int Top_Aux { get; set; }

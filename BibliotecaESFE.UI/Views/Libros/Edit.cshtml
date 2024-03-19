@@ -1,53 +1,109 @@
-﻿@model BibliotecaESFE.EN.Libros
+﻿@using BibliotecaESFE.EN
+@model BibliotecaESFE.EN.Libros
 
 @{
     ViewData["Title"] = "Edit";
+    List<Autores> autores = ViewBag.Autores as List<Autores>;
+    List<Editoriales> editoriales = ViewBag.Editoriales as List<Editoriales>;
+    List<Categorias> categorias = ViewBag.Categorias as List<Categorias>;
+
 }
 
-<h1>Edit</h1>
+<h1>Modificar Usuario</h1>
 
-<h4>Libros</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" class="form-control" />
+<form asp-action="Edit">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" class="form-control" />
 
-            <div class="form-group">
-                <label asp-for="Titulo" class="control-label"></label>
-                <input asp-for="Titulo" class="form-control" />
-                <span asp-validation-for="Titulo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AutorId" class="control-label"></label>
-                <input asp-for="AutorId" class="form-control" />
-                <span asp-validation-for="AutorId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EditorialId" class="control-label"></label>
-                <input asp-for="EditorialId" class="form-control" />
-                <span asp-validation-for="EditorialId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CategoriaId" class="control-label"></label>
-                <input asp-for="CategoriaId" class="form-control" />
-                <span asp-validation-for="CategoriaId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Disponibilidad" class="control-label"></label>
-                <input asp-for="Disponibilidad" class="form-control" />
-                <span asp-validation-for="Disponibilidad" class="text-danger"></span>
-            </div>
-           
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+                <div class="form-group">
+                    <label asp-for="Titulo" class="control-label"></label>
+                    <input asp-for="Titulo" class="form-control" />
+                    <span asp-validation-for="Titulo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Disponibilidad" class="control-label"></label>
+                    <input asp-for="Disponibilidad" class="form-control" />
+                    <span asp-validation-for="Disponibilidad" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Autores" class="control-label"></label>
+                    <select asp-for="AutorId" class="form-control">
+                        <option selected value="">SELECCIONAR</option>
+                        @foreach (var item in autores)
+                        {
+                            if (Model.AutorId == item.Id)
+                            {
+                                <option selected value="@item.Id">@item.Nombre</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Id">@item.Nombre</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="AutorId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Editoriales" class="control-label"></label>
+                    <select asp-for="EditorialId" class="form-control">
+                        <option selected value="">SELECCIONAR</option>
+                        @foreach (var item in editoriales)
+                        {
+                            if (Model.EditorialId == item.Id)
+                            {
+                                <option selected value="@item.Id">@item.Nombre</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Id">@item.Nombre</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="EditorialId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Categorias" class="control-label"></label>
+                    <select asp-for="CategoriaId" class="form-control">
+                        <option selected value="">SELECCIONAR</option>
+                        @foreach (var item in categorias)
+                        {
+                            if (Model.CategoriaId == item.Id)
+                            {
+                                <option selected value="@item.Id">@item.Nombre</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Id">@item.Nombre</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="CategoriaId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                    <a asp-action="Index">Regresar a la lista</a>
+                </div>
+                <span class="text-danger">@ViewBag.Error</span>
+            </form>
+        </div>
     </div>
-</div>
+</form>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(function () {
+            $("form input[name],form select[name]").trigger("blur");
+        });
+    </script>
+}

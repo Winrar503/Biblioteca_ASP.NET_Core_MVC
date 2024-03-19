@@ -9,7 +9,7 @@ using BibliotecaESFE.DAL;
 
 namespace BibliotecaESFE.UI.Controllers
 {
-   [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+   // [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class LibrosController : Controller
     {
         AutoresBL autoresBL = new AutoresBL();
@@ -36,7 +36,7 @@ namespace BibliotecaESFE.UI.Controllers
             ViewBag.Autores = autores;
             ViewBag.Editoriales = editoriales;
             ViewBag.Categorias = categorias;
-            
+
 
             return View(libro);
         }
@@ -114,7 +114,7 @@ namespace BibliotecaESFE.UI.Controllers
         // GET: LibrosController/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
-            var libros = await librosBL.GetByIdAsync(new Libros { Id =id });
+            var libros = await librosBL.GetByIdAsync(new Libros { Id = id });
             libros.Autores = await autoresBL.GetByIdAsync(new Autores { Id = libros.AutorId });
             libros.Editoriales = await editorialesBL.GetByIdAsync(new Editoriales { Id = libros.EditorialId });
             libros.Categorias = await categoriasBL.GetByIdAsync(new Categorias { Id = libros.CategoriaId });
@@ -140,7 +140,7 @@ namespace BibliotecaESFE.UI.Controllers
                 if (librosDb.Id > 0)
                     librosDb.Autores = await autoresBL.GetByIdAsync(new Autores { Id = librosDb.AutorId });
                 if (librosDb.Id > 0)
-                    librosDb.Editoriales = await editorialesBL.GetByIdAsync(new Editoriales { Id = librosDb.EditorialId }); 
+                    librosDb.Editoriales = await editorialesBL.GetByIdAsync(new Editoriales { Id = librosDb.EditorialId });
                 if (librosDb.Id > 0)
                     librosDb.Categorias = await categoriasBL.GetByIdAsync(new Categorias { Id = librosDb.CategoriaId });
 
