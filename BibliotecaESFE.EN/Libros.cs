@@ -29,5 +29,6 @@ namespace BibliotecaESFE.EN
         public Autores? Autores { get; set; }
         public Editoriales? Editoriales { get; set; }
         public Categorias? Categorias { get; set; }
+        public List<Reservas>? Reservas { get; set; }
     }
 }
