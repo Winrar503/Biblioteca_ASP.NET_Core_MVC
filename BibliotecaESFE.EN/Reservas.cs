@@ -13,16 +13,18 @@ namespace BibliotecaESFE.EN
     public  class Reservas
     {
         [Key ] 
-        public int Id { get; set; } 
+        public int Id { get; set; }
+        [ForeignKey("Usuarios")]
         public int UsuarioId { get; set; }
+        [ForeignKey("Libros")]
         public int LibroId { get; set; }
         public DateTime FechaReserva {  get; set; }
 
 
         [NotMapped]
         public int Top_Aux { get; set; }
-        public Usuarios Usuarios { get; set; } = new Usuarios();
-        public Libros Libros { get; set; }  = new Libros();
+        public Usuarios? Usuarios { get; set; }
+        public Libros? Libros { get; set; }
 
     }
 }

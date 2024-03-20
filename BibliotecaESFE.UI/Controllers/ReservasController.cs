@@ -36,7 +36,7 @@ namespace BibliotecaESFE.UI.Controllers
             ViewBag.Usuarios = usuarios;
             ViewBag.Libros = libros;
 
-            return View(reservas);
+            return View(reserva);
         }
 
         // GET: ReservasController/Details/5
