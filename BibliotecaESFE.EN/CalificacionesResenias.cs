@@ -12,7 +12,7 @@ namespace BibliotecaESFE.EN
     {
         [Key]
         public int Id { get; set; }
-        [ForeignKey("Usuario")]
+        [ForeignKey("Usuarios")]
         public int UsuarioId {  get; set; }
         [ForeignKey("Libros")]
         public int LibroId { get; set; }
@@ -24,7 +24,7 @@ namespace BibliotecaESFE.EN
 
         [NotMapped]
         public int Top_Aux {  get; set; }
-        public Usuarios Usuarios { get; set; } = new Usuarios();
-        public Libros Libros { get; set; } = new Libros();
+        public Usuarios? Usuarios { get; set; }
+        public Libros? Libros { get; set; }
     }
 }

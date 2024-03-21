@@ -1,0 +1,33 @@
+﻿.rating {
+    display: inline-block;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+
+    .rating > span {
+        display: inline-block;
+        position: relative;
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+    }
+
+        .rating > span:hover:before,
+        .rating > span:hover ~ span:before,
+        .rating > input:checked ~ span:before {
+            content: "\2605";
+            position: absolute;
+            left: 0;
+            color: gold;
+        }
+
+        .rating > span:before {
+            content: "\2606";
+            position: absolute;
+            left: 0;
+            color: lightgray;
+        }
+
+    .rating > input {
+        display: none;
+    }

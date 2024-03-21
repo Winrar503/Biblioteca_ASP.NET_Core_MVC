@@ -16,7 +16,7 @@ namespace BibliotecaESFE.DAL
         public DbSet<Editoriales> Editoriales { get; set; }
         public DbSet<Categorias> Categorias { get; set; }
         public DbSet<Libros> Libros { get; set; }
-        public DbSet<CalificacionesResenias> Calificaciones_Reseñas { get; set; }
+        public DbSet<CalificacionesResenias> CalificacionesResenias { get; set; }
         public DbSet<Prestamos> Prestamos { get; set; }
         public DbSet<Comentarios> Comentarios { get; set; }
         public DbSet<Reservas> Reservas { get; set; }

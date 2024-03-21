@@ -11,6 +11,7 @@
     List<Autores> autores = ViewBag.Autores as List<Autores>;
     List<Editoriales> editoriales = ViewBag.Editoriales as List<Editoriales>;
     List<Categorias> categorias = ViewBag.Categorias as List<Categorias>;
+ 
 }
 
 <h1>Index</h1>
@@ -25,25 +26,6 @@
                         <input type="text" class="form-control" name="Titulo" />
                     </div>
                 </div>
-               @*  <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="control-label">Autor</label>
-                        <input type="text" class="form-control" name="AutorId" />
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="control-label">Editorial</label>
-                        <input type="text" class="form-control" name="EditorialId" />
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="control-label">CategoriaId</label>
-                        <input type="text" class="form-control" name="CategoriaId" />
-                    </div>
-                </div> *@
-            
                 
             </div>
             <div class="row">
@@ -120,6 +102,25 @@
             </div>
         </form>
     </div>
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
 </div>
 
 <table class="table">
@@ -169,6 +170,7 @@
                     @Html.ActionLink("Modificar", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-info" })
                     @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-outline-secondary" })
                     @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
+                    @Html.ActionLink("Calificar", "Calificar", new { id = item.Id }, new { @class = "btn btn-outline-primary" })
             </td>
         </tr>
             numRegistros++;

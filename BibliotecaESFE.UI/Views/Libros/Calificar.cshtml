@@ -1,0 +1,61 @@
+﻿<link rel="stylesheet" href="~/css/calificaciones.css" />
+<script src="~/js/calificaciones.js"></script>
+
+@using BibliotecaESFE.EN
+
+@model BibliotecaESFE.EN.CalificacionesResenias
+
+@{
+    ViewData["Title"] = "Calificar Libro";
+    List<CalificacionesResenias> calificacionesResenias = ViewBag.CalificacionesResenias as List<CalificacionesResenias>;
+    var libro = ViewBag.Libro as Libros;
+    var usuario = ViewBag.Usuario as Usuarios;
+}
+<h1>Calificar Libro</h1>
+
+<form asp-action="Calificar" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <input type="hidden" name="LibroId" value="@libro.Id">
+    <input type="hidden" name="UsuarioId" value="@usuario.Id">
+
+    <div class="form-group">
+        <label asp-for="@libro.Titulo" class="control-label"></label>
+        <input asp-for="@libro.Titulo" class="form-control" />
+        <span asp-validation-for="@libro.Titulo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Calificación:</label>
+        <div class="rating">
+            <span><input type="radio" id="star5" name="Calificacion" value="5" /></span>
+            <span><input type="radio" id="star4" name="Calificacion" value="4" /></span>
+            <span><input type="radio" id="star3" name="Calificacion" value="3" /></span>
+            <span><input type="radio" id="star2" name="Calificacion" value="2" /></span>
+            <span><input type="radio" id="star1" name="Calificacion" value="1" /></span>
+        </div>
+        <span asp-validation-for="Calificacion" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Comentario:</label>
+        <textarea asp-for="Comentario" class="form-control"></textarea>
+        <span asp-validation-for="Comentario" class="text-danger"></span>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <a asp-action="Index">Regresar a la lista</a>
+            </div>
+            <span class="text-danger">@ViewBag.Error</span>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

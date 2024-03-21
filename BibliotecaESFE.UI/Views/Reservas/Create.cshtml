@@ -1,0 +1,71 @@
+﻿@using BibliotecaESFE.EN
+@model BibliotecaESFE.EN.Reservas
+
+@{
+    ViewData["Title"] = "Crear";
+    List<Usuarios> usuarios = ViewBag.Usuarios as List<Usuarios>;
+    List<Libros> libros = ViewBag.Libros as List<Libros>;
+}
+
+<h1>Crear Reservas</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label">Usuarios</label>
+                    <select asp-for="UsuarioId" class="form-control">
+                        <option value="0">SELECCIONAR</option>
+                        @foreach (var item in usuarios)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Libros</label>
+                        <select asp-for="LibroId" class="form-control">
+                            <option value="0">SELECCIONAR</option>
+                            @foreach (var item in libros)
+                            {
+                                <option value="@item.Id">@item.Titulo</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="control-label">Fecha de Reserva</label>
+                    <input type="datetime-local" class="form-control" name="FechaReserva" />
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                        <a asp-action="Index">Regresar a la lista</a>
+                    </div>
+                    <span class="text-danger">@ViewBag.Error</span>
+                </div>
+            </div>
+           
+            
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
