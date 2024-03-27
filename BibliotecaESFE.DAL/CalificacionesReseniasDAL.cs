@@ -15,7 +15,7 @@ namespace BibliotecaESFE.DAL
             int result = 0;
             using (var bdContexto = new ContextoBD())
             {
-                bdContexto.Calificaciones_Reseñas.Add(calificaciones);
+                bdContexto.CalificacionesResenias.Add(calificaciones);
                 result = await bdContexto.SaveChangesAsync();
             }
             return result;
@@ -25,7 +25,7 @@ namespace BibliotecaESFE.DAL
             int result = 0;
             using (var bdContexto = new ContextoBD())
             {
-                var calificacionesDB = await bdContexto.Calificaciones_Reseñas.FirstOrDefaultAsync(c => c.Id == calificaciones.Id);
+                var calificacionesDB = await bdContexto.CalificacionesResenias.FirstOrDefaultAsync(c => c.Id == calificaciones.Id);
                 if (calificacionesDB != null)
                 {
                     calificacionesDB.UsuarioId = calificaciones.UsuarioId;
@@ -40,11 +40,11 @@ namespace BibliotecaESFE.DAL
             int result = 0;
             using (var bdContexto = new ContextoBD())
             {
-                var calificacionesDB = await bdContexto.Calificaciones_Reseñas.FirstOrDefaultAsync(c => c.Id == calificaciones.Id);
+                var calificacionesDB = await bdContexto.CalificacionesResenias.FirstOrDefaultAsync(c => c.Id == calificaciones.Id);
 
                 if (calificacionesDB != null)
                 {
-                    bdContexto.Calificaciones_Reseñas.Remove(calificacionesDB);
+                    bdContexto.CalificacionesResenias.Remove(calificacionesDB);
                     result = await bdContexto.SaveChangesAsync();
                 }
                 return result;
@@ -56,7 +56,7 @@ namespace BibliotecaESFE.DAL
             var calificacionesDB = new CalificacionesResenias();
             using (var bdContexto = new ContextoBD())
             {
-                calificacionesDB = await bdContexto.Calificaciones_Reseñas.FirstOrDefaultAsync(c => c.Id == calificaciones.Id);
+                calificacionesDB = await bdContexto.CalificacionesResenias.FirstOrDefaultAsync(c => c.Id == calificaciones.Id);
             }
             return calificacionesDB;
         }
@@ -65,7 +65,7 @@ namespace BibliotecaESFE.DAL
             var calificacione = new List<CalificacionesResenias>();
             using (var bdContexto = new ContextoBD())
             {
-                calificacione = await bdContexto.Calificaciones_Reseñas.ToListAsync();
+                calificacione = await bdContexto.CalificacionesResenias.ToListAsync();
             }
             return calificacione;
         }
@@ -91,7 +91,7 @@ namespace BibliotecaESFE.DAL
             var calificacione = new List<CalificacionesResenias>();
             using (var bdContexto = new ContextoBD())
             {
-                var select = bdContexto.Calificaciones_Reseñas.AsQueryable();
+                var select = bdContexto.CalificacionesResenias.AsQueryable();
                 select = QuerySelect(select, calificaciones);
                 calificacione = await select.ToListAsync();
             }

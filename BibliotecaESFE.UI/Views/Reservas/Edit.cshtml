@@ -1,0 +1,76 @@
+﻿@using BibliotecaESFE.EN
+@model BibliotecaESFE.EN.Reservas
+
+@{
+    ViewData["Title"] = "Edit";
+    List<Usuarios> usuarios = ViewBag.Usuarios as List<Usuarios>;
+    List<Libros> libros = ViewBag.Libros as List<Libros>;
+}
+
+<h1>Edit</h1>
+
+<h4>Reservas</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" class="form-control" />
+
+
+            <div class="form-group">
+                <label asp-for="Usuarios" class="control-label"></label>
+                <select asp-for="UsuarioId" class="form-control">
+                    <option selected value="">SELECCIONAR</option>
+                    @foreach (var item in usuarios)
+                    {
+                        if (Model.UsuarioId == item.Id)
+                        {
+                            <option selected value="@item.Id">@item.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="UsuarioId" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Libros" class="control-label"></label>
+                <select asp-for="LibroId" class="form-control">
+                    <option selected value="">SELECCIONAR</option>
+                    @foreach (var item in libros)
+                    {
+                        if (Model.LibroId == item.Id)
+                        {
+                            <option selected value="@item.Id">@item.Titulo</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Id">@item.Titulo</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="UsuarioId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaReserva" class="control-label"></label>
+                <input asp-for="FechaReserva" class="form-control" />
+                <span asp-validation-for="FechaReserva" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <a asp-action="Index">Regresar a la lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

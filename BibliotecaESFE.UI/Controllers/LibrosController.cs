@@ -16,6 +16,8 @@ namespace BibliotecaESFE.UI.Controllers
         EditorialesBL editorialesBL = new EditorialesBL();
         CategoriasBL categoriasBL = new CategoriasBL();
         LibrosBL librosBL = new LibrosBL();
+        CalificacionesReseniasBL calificacionesReseniasBL = new CalificacionesReseniasBL();
+        UsuarioBL usuarioBL = new UsuarioBL();
         // GET: LibrosController
         public async Task<IActionResult> Index(Libros libros = null)
         {
@@ -50,7 +52,35 @@ namespace BibliotecaESFE.UI.Controllers
             libros.Categorias = await categoriasBL.GetByIdAsync(new Categorias { Id = libros.CategoriaId });
             return View(libros);
         }
+        public async Task<IActionResult> Calificar(int id)
+        {
+            var libros = await librosBL.GetByIdAsync(new Libros { Id = id });
+            var usuario = await usuarioBL.SearchAsync(new Usuarios { Login = User.Identity.Name, Top_Aux = 1 });
+            var actualUser = usuario.FirstOrDefault();
+            ViewBag.Usuario = actualUser;
+            ViewBag.Libro = libros;
+            ViewBag.Error = "";
+            return View();
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Calificar(CalificacionesResenias calificacionesResenias)
+        {
+            try
+            {
+                calificacionesResenias.Id = 0;
+                calificacionesResenias.FechaCalificacion = DateTime.Now;
+                int result = await calificacionesReseniasBL.CreateAsync(calificacionesResenias);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                ViewBag.CalificacionesResenias = await calificacionesReseniasBL.GetAllAsync();
+                return View(calificacionesResenias);
+            }
+        }
         // GET: LibrosController/Create
         public async Task<IActionResult> Create()
         {
