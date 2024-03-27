@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BibliotecaESFE.UI.Controllers
 {
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class PrestamosController : Controller
     {
         // GET: PrestamosController

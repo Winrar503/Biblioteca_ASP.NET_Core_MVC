@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BibliotecaESFE.UI.Controllers
 {
-   // [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+   [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class CategoriasController : Controller
     {
         CategoriasBL categoriasBL = new CategoriasBL();

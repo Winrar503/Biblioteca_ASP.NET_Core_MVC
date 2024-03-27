@@ -9,7 +9,7 @@ using BibliotecaESFE.DAL;
 
 namespace BibliotecaESFE.UI.Controllers
 {
-   // [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class LibrosController : Controller
     {
         AutoresBL autoresBL = new AutoresBL();
