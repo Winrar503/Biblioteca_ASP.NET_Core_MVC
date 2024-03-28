@@ -20,3 +20,34 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/*
+Donde var blockquote del comtacto defs las redes sociales*/
+.footer {
+    background-color: #f8f9fa;
+    padding: 1px 0;
+    text-align: center;
+}
+
+.contact-info {
+    font-size: 18px;
+    margin: 0;
+}
+
+.contact-label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.footer a {
+    color: #343a40;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+    .footer a:hover {
+        color: #007bff;
+    }
+
+
+

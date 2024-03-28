@@ -7,22 +7,64 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BibliotecaESFE.UI.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-KdajLW7gY16ntGbAm/BqT5HapxRHlNuhG3F46zLp7d7Je5c26fBJz/hRLjO/kqzjwz9WY3GqSMTiGjKXzZcixQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BibliotecaESFE.UI</a>
+
+
+
+
+                <style>
+                    .navbar-brand {
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                        font-size: 24px;
+                        font-weight: bold;
+                        color: #333;
+                        text-decoration: none;
+                        position: relative;
+                        transition: color 0.3s ease;
+                    }
+
+                        .navbar-brand::before {
+                            content: '';
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 2px;
+                            background-color: #007bff;
+                            transform: scaleX(0);
+                            transition: transform 0.3s ease;
+                        }
+
+                        .navbar-brand:hover {
+                            color: #007bff;
+                        }
+
+                            .navbar-brand:hover::before {
+                                transform: scaleX(1);
+                            }
+                </style>
+
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Biblioteca ESFE</a>
+
+
+
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
+                       @*  <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
+                        </li> *@
                         @if (User.Identity.IsAuthenticated)
                         {
 
@@ -39,7 +81,6 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Libros" asp-action="Index">Libros</a>
                             </li>
-
 
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Categorias" asp-action="Index">Categorias</a>
@@ -58,9 +99,9 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Logout">Cerrar sesión</a>
                             </li>
                         }
-                        <li class="nav-item">
+                    @*     <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        </li> *@
                     </ul>
                 </div>
             </div>
@@ -74,15 +115,26 @@
 
 
     </div>
-
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - BibliotecaESFE.UI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <p class="contact-info">
+                <span class="contact-label">Developer Contact -</span>
+                <a href="https://www.facebook.com/profile.php?id=100087871459133&mibextid=ZbWKwL" target="_blank">
+                    <i class="fab fa-facebook"></i> Facebook
+                </a> |
+                <a href="https://www.instagram.com/winraraelexis?igsh=M2QwamN4aml0MW5j" target="_blank">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a> |
+                <a href="https://wa.me/tu_numero_de_telefono" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </p>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
-</html>
+</html> 
