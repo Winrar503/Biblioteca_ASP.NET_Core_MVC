@@ -61,9 +61,9 @@ namespace BibliotecaESFE.EN
         //lista
         public List<RegistroSecionesUsuarios> Reg { get; set; } = new List<RegistroSecionesUsuarios> { };
         public List<Reservas> Reservas { get; set; } = new List<Reservas> { };
-        public List<Comentarios> Comentarios { get; set; } = new List<Comentarios> { };
         public List<CalificacionesResenias> Calificaciones { get; set; } = new List<CalificacionesResenias> { };    
         public List<Prestamos> Prestamos { get; set; } = new List<Prestamos> { };   
+        public List<Libros> Libros { get; set; } = new List<Libros>{ };
     }
     public enum User_Status
     {

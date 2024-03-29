@@ -1,6 +1,5 @@
 ﻿@using BibliotecaESFE.EN
 @model IEnumerable<BibliotecaESFE.EN.Libros>
-
 @{
     ViewData["Title"] = "Index";
     int numPage = 1;
@@ -12,11 +11,10 @@
     List<Editoriales> editoriales = ViewBag.Editoriales as List<Editoriales>;
     List<Categorias> categorias = ViewBag.Categorias as List<Categorias>;
     List<CalificacionesResenias> calificacionesResenias = ViewBag.CalificacionesResenias as List<CalificacionesResenias>;
+    List<Usuarios> usuarios = ViewBag.Usuarios as List<Usuarios>;
 
 }
-
 <h1>Index</h1>
-
 <div class="row">
     <div class="col-md-12">
         <form asp-action="Index">
@@ -26,11 +24,9 @@
                         <label class="control-label">Titulo</label>
                         <input type="text" class="form-control" name="Titulo" />
                     </div>
-                </div>
-                
+                </div>             
             </div>
-            <div class="row">
-                
+            <div class="row">                
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label">Autores</label>
@@ -43,7 +39,6 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label">Editoriales</label>
@@ -56,7 +51,6 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label">Categorias</label>
@@ -69,14 +63,12 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="col-md-3">
                     <div class="form-group">
                         <label class="control-label">Disponibilidad</label>
                         <input type="text" class="form-control" name="Disponibilidad" />
                     </div>
                 </div>
-
                 <div class="col-md-2">
                     <div class="form-group">
                         <label class="control-label">Top</label>
@@ -102,32 +94,12 @@
                 <a asp-action="Create" class="btn btn-outline-primary">Nuevo libro</a>
             </div>
         </form>
-    </div>
-
-
-
-
-
-
-
-   
-
-
-
-
-
-
-
-
-
-
-
+    </div>    
 </div>
-
 <table class="table">
     <thead>
         <tr>
-
+            
             <th>
                 @Html.DisplayNameFor(model => model.Titulo)
             </th>
@@ -143,14 +115,20 @@
             <th>
                 @Html.DisplayNameFor(model => model.Disponibilidad)
             </th>
-          
+            <th>
+                Calificación
+            </th>
+            <th>
+                Comentario
+            </th>
+
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-
+               
             <td>
                 @Html.DisplayFor(modelItem => item.Titulo)
             </td>
@@ -166,7 +144,40 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Disponibilidad)
             </td>
-        
+                <td>
+                    @{
+
+                        var comentarioResenia = calificacionesResenias.FirstOrDefault(c => c.LibroId == item.Id);
+                        var calificacionResenia = calificacionesResenias.FirstOrDefault(c => c.LibroId == item.Id);
+                        
+                    }
+                    @if (calificacionResenia != null)
+                    {
+                        <span class="rating">
+                            @for (int i = 0; i < calificacionResenia.Calificacion; i++)
+                            {
+                                <span class="star">&#9733;</span>
+                            }
+                        </span>
+                    }
+                    else
+                    {
+                        <span>No calificado</span>
+                    }
+                </td>
+
+                <td>
+                    @if (comentarioResenia != null)
+                    {
+                        <span>@comentarioResenia.Comentario</span>
+                    }
+                    else
+                    {
+                        <span>Sin comentario</span>
+                    }
+                </td>
+
+
             <td>
                     @Html.ActionLink("Modificar", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-info" })
                     @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-outline-secondary" })
@@ -187,7 +198,6 @@
                 numPage--;
             }
         }
-
     </tbody>
 </table>
 @if (numPage > 1)

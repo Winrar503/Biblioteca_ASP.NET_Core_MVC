@@ -1,4 +1,4 @@
-﻿.rating {
+﻿/*.rating {
     display: inline-block;
     unicode-bidi: bidi-override;
     direction: rtl;
@@ -31,3 +31,17 @@
     .rating > input {
         display: none;
     }
+*/
+.rating {
+    display: inline-block;
+    font-size: 24px;
+}
+
+    .rating .star {
+        cursor: pointer;
+        color: #ccc; /* Color de estrella desmarcada */
+    }
+
+        .rating .star.selected, .rating .star:hover {
+            color: gold; /* Color de estrella marcada */
+        }

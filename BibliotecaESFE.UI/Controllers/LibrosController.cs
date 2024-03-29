@@ -19,6 +19,8 @@ namespace BibliotecaESFE.UI.Controllers
         CalificacionesReseniasBL calificacionesReseniasBL = new CalificacionesReseniasBL();
         UsuarioBL usuarioBL = new UsuarioBL();
         // GET: LibrosController
+
+        // GET: LibrosController
         public async Task<IActionResult> Index(Libros libros = null)
         {
             if (libros == null)
@@ -34,14 +36,18 @@ namespace BibliotecaESFE.UI.Controllers
             var autores = await autoresBL.GetAllAsync();
             var editoriales = await editorialesBL.GetAllAsync();
             var categorias = await categoriasBL.GetAllAsync();
+            var calificacionesResenias = await calificacionesReseniasBL.GetAllAsync(); // Agregado para obtener todas las calificaciones
+            var usuarios = await usuarioBL.GetAllAsync();
 
             ViewBag.Autores = autores;
             ViewBag.Editoriales = editoriales;
             ViewBag.Categorias = categorias;
-
+            ViewBag.CalificacionesResenias = calificacionesResenias; // Pasar las calificaciones a la vista
+            ViewBag.Usuarios = usuarios; // Pasar el usuario a la vista
 
             return View(libro);
         }
+
 
         // GET: LibrosController/Details/5
         public async Task<IActionResult> Details(int id)
@@ -97,10 +103,11 @@ namespace BibliotecaESFE.UI.Controllers
         // POST: LibrosController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Libros libros)
+        public async Task<IActionResult> Create(Libros libros, IFormFile imagen)
         {
             try
             {
+
                 int result = await librosBL.CreateAsync(libros);
                 return RedirectToAction(nameof(Index));
             }
