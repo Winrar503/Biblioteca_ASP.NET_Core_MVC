@@ -28,6 +28,8 @@ namespace BibliotecaESFE.UI.Controllers
             return View(roles);
         }
 
+
+
         // acción que muestra los detalles de un registro
         public async Task<IActionResult> Details(int id)
         {

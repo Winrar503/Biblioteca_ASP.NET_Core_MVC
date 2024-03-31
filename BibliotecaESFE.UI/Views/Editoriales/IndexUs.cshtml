@@ -1,0 +1,19 @@
+﻿<link rel="stylesheet" href="~/css/editoriales.css" />
+@model IEnumerable<BibliotecaESFE.EN.Editoriales>
+@{
+    ViewData["Title"] = "IndexUs";
+}
+
+<h1>Editoriales</h1>
+
+<div class="editoriales-container">
+    @foreach (var item in Model)
+    {
+        <div class="editorial-card">
+            <div class="editorial-details">
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </div>
+            <!-- Otras propiedades del editorial -->
+        </div>
+    }
+</div>

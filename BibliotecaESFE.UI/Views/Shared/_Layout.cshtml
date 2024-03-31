@@ -59,13 +59,12 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                      
-                        @if (User.Identity.IsAuthenticated)
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Administrador")) // para identificar entre usuario y admin
                         {
                              <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Biblioteca ESFE</a>
 
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Reservas" asp-action="Index">Reservas</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Reservas" asp-action="IndexUs">Reservas</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Autores" asp-action="Index">Autores</a>
@@ -91,6 +90,56 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="ChangePassword">Cambiar clave</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Logout">Cerrar sesión</a>
+                            </li>
+                        }
+
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Usuario")) // para identificar entre usuario y admin
+                        {
+                            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Biblioteca ESFE</a>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Reservas" asp-action="Index">Reservas</a>
+                            </li>
+                         
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Editoriales" asp-action="IndexUs">Editoriales</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Libros" asp-action="Index">Libros</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Categorias" asp-action="IndexUs">Categorias</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Logout">Cerrar sesión</a>
+                            </li>
+                        }
+
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Encargado")) // para identificar entre usuario y admin
+                        {
+                            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Biblioteca ESFE</a>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Reservas" asp-action="IndexUs">Reservas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Autores" asp-action="Index">Autores</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Editoriales" asp-action="Index">Editoriales</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Libros" asp-action="Index">Libros</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Categorias" asp-action="Index">Categorias</a>
+                            </li
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Logout">Cerrar sesión</a>
                             </li>

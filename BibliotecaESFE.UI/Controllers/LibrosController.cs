@@ -47,6 +47,10 @@ namespace BibliotecaESFE.UI.Controllers
 
             return View(libro);
         }
+        
+
+
+
 
 
         // GET: LibrosController/Details/5

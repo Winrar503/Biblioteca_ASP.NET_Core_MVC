@@ -1,0 +1,19 @@
+﻿<link rel="stylesheet" href="~/css/categoria.css" />
+@model IEnumerable<BibliotecaESFE.EN.Categorias>
+
+@{
+    ViewData["Title"] = "IndexUs";
+}
+
+<h1>Listado de Categorías</h1>
+
+<div class="categorias-container">
+    @foreach (var item in Model)
+    {
+        <div class="categoria-card">
+            <div class="categoria-details">
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </div>
+        </div>
+    }
+</div>

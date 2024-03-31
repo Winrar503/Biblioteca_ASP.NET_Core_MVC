@@ -27,6 +27,21 @@ namespace BibliotecaESFE.UI.Controllers
 
             return View(editoriale);
         }
+        public async Task<IActionResult> IndexUs(Editoriales editoriales = null)
+        {
+            if (editoriales == null)
+                editoriales = new Editoriales();
+            if (editoriales.Top_Aux == 0)
+                editoriales.Top_Aux = 10;
+            else if (editoriales.Top_Aux == -1)
+                editoriales.Top_Aux = 0;
+
+            var editoriale = await editorialesBL.SearchAsync(editoriales);
+            ViewBag.Top = editoriales.Top_Aux;
+
+            return View("IndexUs", editoriale);
+        }
+
 
         // GET: EditorialesController/Details/5
         public ActionResult Details(int id)

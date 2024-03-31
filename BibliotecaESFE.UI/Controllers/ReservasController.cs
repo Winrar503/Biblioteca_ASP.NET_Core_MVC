@@ -38,6 +38,19 @@ namespace BibliotecaESFE.UI.Controllers
 
             return View(reserva);
         }
+        // GET: ReservasController/IndexUs
+        public async Task<IActionResult> IndexUs()
+        {
+            var reservas = await reservasBL.GetAllAsync();
+            // Cargar los usuarios y libros relacionados
+            foreach (var reserva in reservas)
+            {
+                reserva.Usuarios = await usuarioBL.GetByIdAsync(new Usuarios { Id = reserva.UsuarioId });
+                reserva.Libros = await librosBL.GetByIdAsync(new Libros { Id = reserva.LibroId });
+            }
+            return View(reservas);
+        }
+
 
         // GET: ReservasController/Details/5
         public async Task<IActionResult> Details(int id)

@@ -1,0 +1,101 @@
+﻿@model IEnumerable<BibliotecaESFE.EN.Reservas>
+
+@{
+    ViewData["Title"] = "IndexUs";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        /* Estilos para hacer la tabla responsive */
+        .table-wrapper {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid black;
+        }
+        th {
+            background-color: #4CAF50;
+            color: black;
+        }
+        /* Estilos adicionales para el diseño */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>@ViewData["Title"]</h1>
+        <div class="table-wrapper">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Avatar
+                        </th>
+                        <th>
+                            Usuario
+                        </th>
+                        <th>
+                            Libro
+                        </th>
+                        <th>
+                            Fecha de Reserva
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="https://i.pravatar.cc/150?u=@item.UsuarioId" alt="Avatar" class="avatar">
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Usuarios.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Libros.Titulo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaReserva)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,4 +1,5 @@
 ﻿using BibliotecaESFE.BL;
+using BibliotecaESFE.DAL;
 using BibliotecaESFE.EN;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -26,6 +27,22 @@ namespace BibliotecaESFE.UI.Controllers
 
             return View(categories);
         }
+
+        public async Task<IActionResult> IndexUs(Categorias categorias = null)
+        {
+            if (categorias == null)
+                categorias = new Categorias();
+            if (categorias.Top_Aux == 0)
+                categorias.Top_Aux = 0;
+            else if (categorias.Top_Aux == -1)
+                categorias.Top_Aux = 0;
+
+            var categories = await categoriasBL.SearchAsync(categorias);
+            ViewBag.Top = categorias.Top_Aux;
+
+            return View(categories);
+        }
+
 
         // GET: CategoriasController/Details/5
         public async  Task<IActionResult> Details(int id)
