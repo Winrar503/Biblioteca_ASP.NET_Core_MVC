@@ -10,41 +10,56 @@ namespace BibliotecaESFE.UI.Controllers
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class PrestamosController : Controller
     {
+        PrestamosBL prestamosBL = new PrestamosBL();
         // GET: PrestamosController
-        public ActionResult Index()
+        public async Task<IActionResult> Index(Prestamos prestamos = null)
         {
-            return View();
+            if (prestamos == null)
+                prestamos = new Prestamos();
+            if (prestamos.Top_Aux == 0)
+                prestamos.Top_Aux = 0;
+            else if (prestamos.Top_Aux == -1)
+                prestamos.Top_Aux = 0;
+
+            var prestamose = await prestamosBL.SearchAsync(prestamos);
+            ViewBag.Top = prestamos.Top_Aux;
+
+            return View(prestamose);
         }
 
         // GET: PrestamosController/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            var prestamos = await prestamosBL.GetByIdAsync(new Prestamos { Id = id });
+            return View(prestamos);
         }
 
         // GET: PrestamosController/Create
         public ActionResult Create()
         {
+            ViewBag.Error = "";
             return View();
         }
 
         // POST: PrestamosController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(Prestamos prestamos)
         {
             try
             {
+                int result = await prestamosBL.CreateAsync(prestamos);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewBag.error = ex.Message;
+                return View(prestamos);
             }
         }
 
         // GET: PrestamosController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
             return View();
         }
@@ -65,22 +80,26 @@ namespace BibliotecaESFE.UI.Controllers
         }
 
         // GET: PrestamosController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            var prestamose = await prestamosBL.GetByIdAsync(new Prestamos { Id = id });
+            ViewBag.Error = "";
+            return View(prestamose);
         }
 
         // POST: PrestamosController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Delete(int id, Prestamos Prestamos)
         {
             try
             {
+                int resutl = await prestamosBL.DeleteAsync(Prestamos);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                ViewBag.error = ex.Message;
                 return View();
             }
         }
