@@ -1,4 +1,5 @@
-﻿@using BibliotecaESFE.EN
+﻿<link rel="stylesheet" href="~/css/reservas2.css" />
+@using BibliotecaESFE.EN
 @model IEnumerable<BibliotecaESFE.EN.Reservas>
 
 @{
@@ -32,27 +33,6 @@
                         </select>
                     </div>
                 </div>
-
-                @* <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="control-label">Libro</label>
-                        <select name="LibroId" class="form-control">
-                            <option selected value="0">SELECCIONAR</option>
-                            @foreach (var item in Libros)
-                            {
-                                <option value="@item.Id">@item.Titulo</option>
-                            }
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="control-label">Fecha de Reserva</label>
-                        <input type="date" class="form-control" name="FechaReserva" />
-                    </div>
-                </div>
- *@
             </div>
             <div class="form-group m-2">
                 <input type="submit" value="Buscar" class="btn btn-outline-info" />
