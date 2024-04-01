@@ -15,6 +15,7 @@ namespace BibliotecaESFE.EN
         public int Id { get; set; }
         [ForeignKey("Usuarios")]
         public int UsuarioId { get; set; }
+        public string CorreoElectronicoUsuario { get; set; }
         [ForeignKey("Libros")]
         public int LibroId { get; set; }
         public DateTime FechaInicio { get; set; }
