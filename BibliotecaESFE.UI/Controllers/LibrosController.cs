@@ -47,9 +47,17 @@ namespace BibliotecaESFE.UI.Controllers
 
             return View(libro);
         }
-        
+        public async Task<IActionResult> IndexUs()
+        {
+            var libros = new Libros(); // Si necesitas inicializar con valores específicos
+            var libro = await librosBL.SearchIncludeLibrosAsync(libros);
 
+            var calificacionesResenias = await calificacionesReseniasBL.GetAllAsync(); // Importante para mostrar calificaciones
 
+            ViewBag.CalificacionesResenias = calificacionesResenias; // Pasar las calificaciones a la vista
+
+            return View(libro);
+        }
 
 
 

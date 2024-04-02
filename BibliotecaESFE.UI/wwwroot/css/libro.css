@@ -1,0 +1,38 @@
+﻿body {
+    background-color: #f4f1ea; /* Un color suave de fondo que recuerda a las páginas de un libro antiguo */
+    color: #5a4a42; /* Color oscuro para el texto, para una fácil lectura */
+    font-family: 'Times New Roman', Times, serif; /* Una tipografía que evoque lectura tradicional */
+}
+
+.table {
+    background-color: #ffffff; /* Fondo blanco para la tabla, para contraste */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para darle profundidad */
+    border-radius: 10px; /* Bordes redondeados */
+    overflow: hidden; /* Asegurar que todo dentro de la tabla se adhiera al border-radius */
+}
+
+th, td {
+    padding: 15px; /* Espaciado interno para celdas de tabla */
+    text-align: left; /* Alineación del texto */
+}
+
+th {
+    background-color: #eae0d5; /* Color de fondo para los encabezados de la tabla */
+    color: #5a4a42; /* Color del texto para los encabezados */
+}
+
+.star {
+    color: #f4d142; /* Color de las estrellas (calificación) */
+    font-size: 18px; /* Tamaño de las estrellas */
+}
+
+.btn-outline-primary {
+    border-color: #8a7e69;
+    color: #8a7e69;
+    transition: all 0.3s ease;
+}
+
+    .btn-outline-primary:hover {
+        background-color: #8a7e69;
+        color: #ffffff;
+    }

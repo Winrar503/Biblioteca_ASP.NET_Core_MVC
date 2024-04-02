@@ -1,5 +1,4 @@
-﻿
-@using BibliotecaESFE.EN
+﻿@using BibliotecaESFE.EN
 @model IEnumerable<BibliotecaESFE.EN.Libros>
 @{
     ViewData["Title"] = "Index";
@@ -25,9 +24,9 @@
                         <label class="control-label">Titulo</label>
                         <input type="text" class="form-control" name="Titulo" />
                     </div>
-                </div>             
+                </div>
             </div>
-            <div class="row">                
+            <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label">Autores</label>
@@ -95,12 +94,12 @@
                 <a asp-action="Create" class="btn btn-outline-primary">Nuevo libro</a>
             </div>
         </form>
-    </div>    
+    </div>
 </div>
 <table class="table">
     <thead>
         <tr>
-            
+
             <th>
                 @Html.DisplayNameFor(model => model.Titulo)
             </th>
@@ -127,30 +126,31 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-               
-            <td>
-                @Html.DisplayFor(modelItem => item.Titulo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Autores.Nombre)
-            </td>
-            <td>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Autores.Nombre)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Editoriales.Nombre)
-            </td>
-            <td>
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Categorias.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Disponibilidad)
-            </td>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Disponibilidad)
+                </td>
                 <td>
                     @{
 
                         var comentarioResenia = calificacionesResenias.FirstOrDefault(c => c.LibroId == item.Id);
                         var calificacionResenia = calificacionesResenias.FirstOrDefault(c => c.LibroId == item.Id);
-                        
+
                     }
                     @if (calificacionResenia != null)
                     {
@@ -179,13 +179,13 @@
                 </td>
 
 
-            <td>
+                <td>
                     @Html.ActionLink("Modificar", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-info" })
                     @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-outline-secondary" })
                     @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
                     @Html.ActionLink("Calificar", "Calificar", new { id = item.Id }, new { @class = "btn btn-outline-primary" })
-            </td>
-        </tr>
+                </td>
+            </tr>
             numRegistros++;
             if (numRegistros == numRegistrosPorPage)
             {

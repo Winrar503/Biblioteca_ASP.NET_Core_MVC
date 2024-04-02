@@ -1,0 +1,72 @@
+﻿<link rel="stylesheet" href="~/css/libro.css" />
+<script src="~/js/libro.js"></script>
+@using BibliotecaESFE.EN
+@model IEnumerable<BibliotecaESFE.EN.Libros>
+
+@{
+    ViewData["Title"] = "Index Us";
+    List<CalificacionesResenias> calificacionesResenias = ViewBag.CalificacionesResenias as List<CalificacionesResenias>;
+}
+<h1 class="animate-on-scroll">Libros Disponibles</h1>
+
+<table class="table animate-on-scroll">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Autores</th>
+            <th>Editoriales</th>
+            <th>Categorías</th>
+            <th>Disponibilidad</th>
+            <th>Calificación</th>
+            <th>Comentario</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Titulo)</td>
+                <td>@Html.DisplayFor(modelItem => item.Autores.Nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.Editoriales.Nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.Categorias.Nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.Disponibilidad)</td>
+                <td>
+                    @{
+                        var calificacionResenia = calificacionesResenias.FirstOrDefault(c => c.LibroId == item.Id);
+                    }
+                    @if (calificacionResenia != null)
+                    {
+                        <span class="rating">
+                            @for (int i = 0; i < calificacionResenia.Calificacion; i++)
+                            {
+                                <span class="star">&#9733;</span>
+                            }
+                        </span>
+                    }
+                    else
+                    {
+                        <span>No calificado</span>
+                    }
+                </td>
+                <td>
+                    @{
+                        var comentarioResenia = calificacionesResenias.FirstOrDefault(c => c.LibroId == item.Id);
+                    }
+                    @if (comentarioResenia != null)
+                    {
+                        <span>@comentarioResenia.Comentario</span>
+                    }
+                    else
+                    {
+                        <span>Sin comentario</span>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Calificar", "Calificar", new { id = item.Id }, new { @class = "btn btn-outline-primary" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
