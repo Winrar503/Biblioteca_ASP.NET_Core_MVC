@@ -25,7 +25,7 @@ namespace BibliotecaESFE.DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data source = WINRAR\SQLEXPRESS;
+            optionsBuilder.UseSqlServer(@"Data source = LAPTOP-7SKAH6B6;
                                            Initial Catalog = BibliotecaESFE;
                                            Integrated Security = true;
                                            Encrypt = false;
