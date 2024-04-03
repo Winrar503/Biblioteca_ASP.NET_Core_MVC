@@ -20,9 +20,6 @@ namespace BibliotecaESFE.DAL
         public DbSet<Prestamos> Prestamos { get; set; }
         public DbSet<Reservas> Reservas { get; set; }
         public DbSet<Role> Role { get; set; }
-
-
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Data source = WINRAR\SQLEXPRESS;
