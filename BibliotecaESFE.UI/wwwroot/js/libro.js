@@ -24,3 +24,21 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+//Busqueda automatitca
+<script>
+    $(document).ready(function(){
+        $('#searchTitle').keyup(function () {
+            var searchText = $(this).val();
+            if (searchText.length > 2) { // Para evitar buscar por cada letra, espera al menos 3 caracteres.
+                $.ajax({
+                    url: '@Url.Action("Search", "Libros")',
+                    type: 'GET',
+                    data: { searchTitle: searchText },
+                    success: function (result) {
+                        $('#librosTable tbody').html(result); // Asume que tu tabla tiene un id="librosTable"
+                    }
+                });
+            }
+        });
+});
+</script>

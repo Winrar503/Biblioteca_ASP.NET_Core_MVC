@@ -9,6 +9,21 @@
 }
 <h1 class="animate-on-scroll">Libros Disponibles</h1>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-controller="Libros" asp-action="Buscar" method="get" class="search-form">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Buscar libros por título" aria-label="Buscar libros por título" aria-describedby="button-addon2" name="titulo">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit" id="button-addon2">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <table class="table animate-on-scroll">
     <thead>
         <tr>

@@ -21,32 +21,29 @@ namespace BibliotecaESFE.UI.Controllers
         // GET: LibrosController
 
         // GET: LibrosController
-        public async Task<IActionResult> Index(Libros libros = null)
+        public async Task<IActionResult> Index(string searchTitle = "", int top = 10)
         {
-            if (libros == null)
-                libros = new Libros();
-            if (libros.Top_Aux == 0)
-                libros.Top_Aux = 0;
-            else if (libros.Top_Aux == -1)
-                libros.Top_Aux = 0;
+            // Si searchTitle no es nulo o vacío, filtra los libros por título.
+            var librosFiltrados = await librosBL.SearchIncludeLibrosAsync(new Libros { Titulo = searchTitle, Top_Aux = top });
 
-            var libro = await librosBL.SearchIncludeLibrosAsync(libros);
-            ViewBag.Top = libros.Top_Aux;
-
+            // Cargar las listas relacionadas como antes.
             var autores = await autoresBL.GetAllAsync();
             var editoriales = await editorialesBL.GetAllAsync();
             var categorias = await categoriasBL.GetAllAsync();
-            var calificacionesResenias = await calificacionesReseniasBL.GetAllAsync(); // Agregado para obtener todas las calificaciones
+            var calificacionesResenias = await calificacionesReseniasBL.GetAllAsync();
             var usuarios = await usuarioBL.GetAllAsync();
 
+            // Pasar todo a ViewBag como antes.
+            ViewBag.Top = top;
             ViewBag.Autores = autores;
             ViewBag.Editoriales = editoriales;
             ViewBag.Categorias = categorias;
-            ViewBag.CalificacionesResenias = calificacionesResenias; // Pasar las calificaciones a la vista
-            ViewBag.Usuarios = usuarios; // Pasar el usuario a la vista
+            ViewBag.CalificacionesResenias = calificacionesResenias;
+            ViewBag.Usuarios = usuarios;
 
-            return View(libro);
+            return View(librosFiltrados);
         }
+
         public async Task<IActionResult> IndexUs()
         {
             var libros = new Libros(); // Si necesitas inicializar con valores específicos
@@ -59,8 +56,7 @@ namespace BibliotecaESFE.UI.Controllers
             return View(libro);
         }
 
-
-
+       
         // GET: LibrosController/Details/5
         public async Task<IActionResult> Details(int id)
         {
@@ -99,6 +95,7 @@ namespace BibliotecaESFE.UI.Controllers
                 return View(calificacionesResenias);
             }
         }
+       
 
         // GET: LibrosController/Create
         public async Task<IActionResult> Create()
