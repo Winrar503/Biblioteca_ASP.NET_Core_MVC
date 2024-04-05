@@ -48,13 +48,13 @@
         {
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.Titulo)</td>
-                <td>@Html.DisplayFor(modelItem => item.Autores.Nombre)</td>
-                <td>@Html.DisplayFor(modelItem => item.Editoriales.Nombre)</td>
-                <td>@Html.DisplayFor(modelItem => item.Categorias.Nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.Autores!.Nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.Editoriales!.Nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.Categorias!.Nombre)</td>
                 <td>@Html.DisplayFor(modelItem => item.Disponibilidad)</td>
                 <td>
                     @{
-                        var calificacionResenia = calificacionesResenias.FirstOrDefault(c => c.LibroId == item.Id);
+                        var calificacionResenia = calificacionesResenias!.FirstOrDefault(c => c.LibroId == item.Id);
                     }
                     @if (calificacionResenia != null)
                     {
@@ -72,7 +72,7 @@
                 </td>
                 <td>
                     @{
-                        var comentarioResenia = calificacionesResenias.FirstOrDefault(c => c.LibroId == item.Id);
+                        var comentarioResenia = calificacionesResenias!.FirstOrDefault(c => c.LibroId == item.Id);
                     }
                     @if (comentarioResenia != null)
                     {
