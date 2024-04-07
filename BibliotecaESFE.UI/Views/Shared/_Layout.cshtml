@@ -6,6 +6,12 @@
     <title>@ViewData["Title"] - BibliotecaESFE.UI</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <!-- Inclusión de Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Inclusión de Tailwind CSS -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="~/BibliotecaESFE.UI.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-KdajLW7gY16ntGbAm/BqT5HapxRHlNuhG3F46zLp7d7Je5c26fBJz/hRLjO/kqzjwz9WY3GqSMTiGjKXzZcixQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -161,7 +167,7 @@
 
 
     </div>
-    <footer class="border-top footer text-muted">
+    <footer class="footer">
         <div class="container">
             <p class="contact-info">
                 <span class="contact-label">Developer Contact -</span>
@@ -174,11 +180,9 @@
                 <a href="https://wa.me/76272675?text=Hola,%20me%20gustaría%20enviar%20un%20mensaje" target="_blank">
                     <i class="fab fa-whatsapp"></i> WhatsApp
                 </a>
-
             </p>
         </div>
     </footer>
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -1,4 +1,5 @@
 ﻿<link rel="stylesheet" href="~/css/libro.css" />
+<link rel="stylesheet" href="~/css/letras.css" />
 <script src="~/js/libro.js"></script>
 @using BibliotecaESFE.EN
 @model IEnumerable<BibliotecaESFE.EN.Libros>
@@ -7,7 +8,7 @@
     ViewData["Title"] = "Index Us";
     List<CalificacionesResenias> calificacionesResenias = ViewBag.CalificacionesResenias as List<CalificacionesResenias>;
 }
-<h1 class="animate-on-scroll">Libros Disponibles</h1>
+<h1 class="letras">Libros Disponibles</h1>
 
 <div class="row">
     <div class="col-md-12">
@@ -32,7 +33,7 @@
 
 <table class="table animate-on-scroll">
     <thead>
-        <tr>
+        <tr class="letra">
             <th>Título</th>
             <th>Autores</th>
             <th>Editoriales</th>

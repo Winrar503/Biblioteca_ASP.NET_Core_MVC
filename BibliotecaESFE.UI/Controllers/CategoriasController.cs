@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BibliotecaESFE.UI.Controllers
 {
@@ -12,6 +13,7 @@ namespace BibliotecaESFE.UI.Controllers
     public class CategoriasController : Controller
     {
         CategoriasBL categoriasBL = new CategoriasBL();
+        LibrosBL librosBL = new LibrosBL();
         // GET: CategoriasController
         public async Task<IActionResult> Index(Categorias categorias = null)
         {
@@ -23,6 +25,7 @@ namespace BibliotecaESFE.UI.Controllers
                 categorias.Top_Aux = 0;
 
             var categories = await categoriasBL.SearchAsync(categorias);
+           // var categoria = await categoriasBL.GetByIdAsync(categ);
             ViewBag.Top = categorias.Top_Aux;
 
             return View(categories);
