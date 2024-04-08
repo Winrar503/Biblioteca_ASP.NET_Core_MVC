@@ -1,29 +1,69 @@
 ﻿@model BibliotecaESFE.EN.Editoriales
 
-
 @{
     ViewData["Title"] = "Eliminar";
 }
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Editorial</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
 
-<h3>Estas seguro de  eliminar esto?</h3>
-<div>
-    <h4>Editoriales</h4>
-    <hr />
-    <dl class="row">
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
 
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-       
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-asp-for="Id" />
-        <input type="submit" value="Elminar" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
-</div>
+        h3 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+            .btn-danger:hover {
+                background-color: #c82333;
+                border-color: #bd2130;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h3>¿Estás seguro de eliminar esto?</h3>
+
+        <div>
+            <h4>Editoriales</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Nombre)</dt>
+                <dd class="col-sm-10">@Html.DisplayFor(model => model.Nombre)</dd>
+            </dl>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <div class="text-center">
+                    <button type="submit" class="btn btn-danger">Eliminar</button> |
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">Regresar a la lista</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,50 +1,108 @@
 ﻿@model BibliotecaESFE.EN.Libros
 
 @{
-    ViewData["Title"] = "Detalless";
+    ViewData["Title"] = "Detalles";
 }
 
-<h1>Detalles de libros</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f9f9f9;
+        }
 
-<div>
-    <h4>Libros</h4>
-    <hr />
-    <dl class="row">
-      
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Autores)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Autores.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Editoriales)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Editoriales.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Categorias)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Categorias.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Disponibilidad)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Disponibilidad)
-        </dd>
-       
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Modificar", "Edit", new { id = Model.Id }, new { @class = "btn btn-success" })
-    <a asp-action="Index">Back to List</a>
-</div>
+        .card {
+            border: none;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .card-header {
+            background-color: #f54242;
+            color: #fff;
+            border-radius: 25px 25px 0 0;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .card-body dl dt {
+            color: #f54242;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .card-body dl dd {
+            margin-bottom: 10px;
+        }
+
+        .btn-edit {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+            .btn-edit:hover {
+                background-color: #45a049;
+            }
+
+        .btn-back {
+            background-color: #2196f3;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+            .btn-back:hover {
+                background-color: #0b7dda;
+            }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="card-title">Detalles de libro</h1>
+                    </div>
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-3">Título:</dt>
+                            <dd class="col-sm-9">@Html.DisplayFor(model => model.Titulo)</dd>
+
+                            <dt class="col-sm-3">Autor:</dt>
+                            <dd class="col-sm-9">@Html.DisplayFor(model => model.Autores.Nombre)</dd>
+
+                            <dt class="col-sm-3">Editorial:</dt>
+                            <dd class="col-sm-9">@Html.DisplayFor(model => model.Editoriales.Nombre)</dd>
+
+                            <dt class="col-sm-3">Categoría:</dt>
+                            <dd class="col-sm-9">@Html.DisplayFor(model => model.Categorias.Nombre)</dd>
+
+                            <dt class="col-sm-3">Disponibilidad:</dt>
+                            <dd class="col-sm-9">@Html.DisplayFor(model => model.Disponibilidad)</dd>
+                        </dl>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-edit"><i class="fas fa-edit me-2"></i> Modificar</a>
+                        <a href="@Url.Action("Index")" class="btn btn-back"><i class="fas fa-arrow-left me-2"></i> Regresar a la lista</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+</body>
+</html>

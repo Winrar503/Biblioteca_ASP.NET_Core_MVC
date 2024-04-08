@@ -4,35 +4,106 @@
     ViewData["Title"] = "Detalles";
 }
 
-<h1>Detatalles</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
 
-<div>
-    <h4>Reservas</h4>
-    <hr />
-    <dl class="row">
-   
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Usuarios)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Usuarios.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Libros)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Libros.Titulo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaReserva)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FechaReserva)
-        </dd>
-      
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Modificar", "Edit", new { id = Model.Id }, new { @class = "btn btn-success" })
-    <a asp-action="Index">Back to List</a>
-</div>
+        .container {
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #343a40;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 10px 10px 0 0;
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .detail-label {
+            font-weight: bold;
+            color: #343a40;
+        }
+
+        .detail-value {
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+
+        .btn-modify {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+            .btn-modify:hover {
+                background-color: #218838;
+            }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+            .back-link:hover {
+                color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Detalles</h1>
+        <div class="card">
+            <div class="card-header">Reservas</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 detail-label">Usuario:</div>
+                    <div class="col-md-9 detail-value">@Html.DisplayFor(model => model.Usuarios.Name)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 detail-label">Libro:</div>
+                    <div class="col-md-9 detail-value">@Html.DisplayFor(model => model.Libros.Titulo)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 detail-label">Fecha de Reserva:</div>
+                    <div class="col-md-9 detail-value">@Html.DisplayFor(model => model.FechaReserva)</div>
+                </div>
+            </div>
+        </div>
+        <a asp-action="Edit" class="btn btn-modify btn-block">Modificar</a>
+        <a asp-action="Index" class="back-link">Volver a la lista</a>
+    </div>
+</body>
+</html>

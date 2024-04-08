@@ -4,67 +4,121 @@
     ViewData["Title"] = "Detalles";
 }
 
-<h1>Detalles del usuario</h1>
-<hr />
-<div>
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Login)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Login)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IdRole)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Role.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        @if (Model.Status == 1)
-        {
-            <dd class="col-sm-10">
-                ACTIVO
-            </dd>
-        }
-        else if (Model.Status == 2)
-        {
-            <dd class="col-sm-10">
-                INACTIVO
-            </dd>
-        }
-        else
-        {
-            <dd class="col-sm-10"> </dd>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f9f9f9;
         }
 
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.RegistrationDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.RegistrationDate)
-        </dd>
-    </dl>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="form-group">
-            @Html.ActionLink("Modificar", "Edit", new { id = Model.Id }, new { @class = "btn btn-success" })
-            <a asp-action="Index">Regresar a la lista</a>
+        .card {
+            border: none;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .card-header {
+            background-color: #f54242;
+            color: #fff;
+            border-radius: 25px 25px 0 0;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .card-body dl dt {
+            color: #f54242;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .card-body dl dd {
+            margin-bottom: 10px;
+        }
+
+        .btn-edit {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+            .btn-edit:hover {
+                background-color: #45a049;
+            }
+
+        .btn-back {
+            background-color: #2196f3;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+            .btn-back:hover {
+                background-color: #0b7dda;
+            }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="card-title">Detalles del usuario</h1>
+                    </div>
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-3">Nombre:</dt>
+                            <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
+
+                            <dt class="col-sm-3">Apellido:</dt>
+                            <dd class="col-sm-9">@Html.DisplayFor(model => model.LastName)</dd>
+
+                            <dt class="col-sm-3">Login:</dt>
+                            <dd class="col-sm-9">@Html.DisplayFor(model => model.Login)</dd>
+
+                            <dt class="col-sm-3">Rol:</dt>
+                            <dd class="col-sm-9">@Html.DisplayFor(model => model.Role.Name)</dd>
+
+                            <dt class="col-sm-3">Estado:</dt>
+                            <dd class="col-sm-9">
+                                @if (Model.Status == 1)
+                                {
+                                    <span class="badge bg-success">Activo</span>
+                                }
+                                else if (Model.Status == 2)
+                                {
+                                    <span class="badge bg-danger">Inactivo</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Desconocido</span>
+                                }
+                            </dd>
+
+                            <dt class="col-sm-3">Fecha de Registro:</dt>
+                            <dd class="col-sm-9">@Html.DisplayFor(model => model.RegistrationDate)</dd>
+                        </dl>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-edit"><i class="fas fa-edit me-2"></i> Modificar</a>
+                        <a href="@Url.Action("Index")" class="btn btn-back"><i class="fas fa-arrow-left me-2"></i> Regresar a la lista</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+</body>
+</html>
